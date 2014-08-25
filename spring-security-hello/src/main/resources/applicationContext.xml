@@ -18,12 +18,23 @@
     </beans:bean>
 	
 	<http auto-config="true">
+		<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		<intercept-url pattern="/admin.jsp" access="ROLE_ADMIN"/>
 		<intercept-url pattern="/**" access="ROLE_USER"/>
+		<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" 
+			default-target-url="/"/>
 	</http>
 	<authentication-manager>
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource"/>
+			<jdbc-user-service data-source-ref="dataSource"
+			 users-by-username-query="select username,password,status as enabled from user where username=?"
+			 authorities-by-username-query="select u.username,r.name as authority
+                                             from user u
+                                             join user_role ur
+                                               on u.id=ur.user_id
+                                             join role r
+                                               on r.id=ur.role_id
+                                            where u.username=?"/>
 			<!-- <user-service>
 				<user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
 				<user name="user" password="user" authorities="ROLE_USER"/>
