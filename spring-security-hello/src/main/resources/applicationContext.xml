@@ -16,7 +16,9 @@
         <beans:property name="url" value="${jdbc.url}"/>
         <beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
     </beans:bean>
-	
+    <!-- 放开资源文件 -->
+    <http pattern="/res/**" security="none"/>
+    
 	<http auto-config="true">
 		<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 		<intercept-url pattern="/admin.jsp" access="ROLE_ADMIN"/>
