@@ -8,6 +8,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	<context:annotation-config/>
+	<context:component-scan base-package="cn.v5cn.security.sshello">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	<context:property-placeholder location="classpath:db.properties"/>
 	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -16,17 +20,61 @@
         <beans:property name="url" value="${jdbc.url}"/>
         <beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
     </beans:bean>
+    
+    <!-- <beans:bean id="userDetailsService" class="cn.v5cn.security.sshello.UserDetailsServiceImpl"/>
+    <beans:bean id="securityMetadataSource" class="cn.v5cn.security.sshello.SecurityMetadataSourceImpl">
+    	<beans:property name="matcher" value="ant"/>
+    </beans:bean>
+    <beans:bean id="accessDecisionManager" class="cn.v5cn.security.sshello.AccessDecisionManagerImpl"/>
+    
+    <beans:bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+    	<beans:property name="authenticationManager" ref="authenticationManager"/>
+    	<beans:property name="accessDecisionManager" ref="accessDecisionManager"/>
+    	<beans:property name="securityMetadataSource" ref="securityMetadataSource"/>
+    </beans:bean>
+    
+    <beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+    	<beans:constructor-arg index="0">
+    		<beans:list>
+    			<beans:ref bean="daoAuthenticationProvider"/>
+    			<beans:ref bean="rememberMeAuthenticationProvider"/>
+    		</beans:list>
+    	</beans:constructor-arg>
+    </beans:bean>
+    
+    <beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+    	<beans:property name="hideUserNotFoundExceptions" value="false"/>
+    	<beans:property name="userDetailsService" ref="userDetailsService"/>
+    </beans:bean>
+    
+    <beans:bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+    </beans:bean>
+    
+    <beans:bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+    	<beans:constructor-arg>
+    		<beans:list>
+    			
+    			<http pattern="/**" security-context-repository-ref="concurrentSessionFilter,securityContextPersistenceFilter,logoutFilter,usernamePasswordAuthenticationFilter,rememberMeAuthenticationFilter,sessionManagementFilter,anonymousAuthFilter,exceptionTranslationFilter,filterSecurityInterceptor"></http>
+    		</beans:list>
+    	</beans:constructor-arg>
+    </beans:bean> -->
+    
     <!-- 放开资源文件 -->
-    <http pattern="/res/**" security="none"/>
+    <http pattern="/r/**" security="none"/>
+    <http pattern="/login" security="none"/>
     <http pattern="/h2web/**" security="none"/>
-	<http auto-config="true">
-		<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-		<intercept-url pattern="/admin.jsp" access="ROLE_ADMIN"/>
-		<intercept-url pattern="/**" access="ROLE_USER"/>
-		<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=true" 
-			default-target-url="/"/>
+
+	<http auto-config="false" entry-point-ref="myAuthenticationEntryPoint">
+		<logout logout-url="/j_spring_security_logout" logout-success-url="/login"/>
+		<custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
 	</http>
-	<authentication-manager>
+	<beans:bean id="myAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/login"></beans:property>
+    </beans:bean>
+	 <authentication-manager alias="myAuthenticationManager">
+    	<authentication-provider user-service-ref="userDetailsService"></authentication-provider>
+    </authentication-manager>
+	<!-- <authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 			 users-by-username-query="select username,password,status as enabled from user where username=?"
@@ -37,10 +85,30 @@
                                              join role r
                                                on r.id=ur.role_id
                                             where u.username=?"/>
-			<!-- <user-service>
+			<user-service>
 				<user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
 				<user name="user" password="user" authorities="ROLE_USER"/>
-			</user-service> -->
+			</user-service>
 		</authentication-provider>
-	</authentication-manager>
+	</authentication-manager> -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="typeAliasesPackage" value="cn.v5cn.security.sshello.entity"/>
+        <beans:property name="configurationProperties">
+            <beans:props>
+                <!-- 添加MyBatis二级缓存 -->
+                <beans:prop key="cacheEnabled">true</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <beans:property name="dataSource" ref="dataSource"/>
+    </beans:bean>
+    <!--创建数据映射器，数据映射器必须为接口 -->
+    <beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <beans:property name="annotationClass" value="org.springframework.stereotype.Repository" />
+        <beans:property name="basePackage" value="cn.v5cn.security.sshello.dao" />
+    </beans:bean>
+	
 </beans:beans>

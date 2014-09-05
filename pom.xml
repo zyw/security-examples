@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>spring-security-hello</module>
+    <module>shiro-hello</module>
   </modules>
 </project>

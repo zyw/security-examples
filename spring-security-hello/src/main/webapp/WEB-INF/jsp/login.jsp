@@ -6,12 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
-<link type="text/css" rel="stylesheet" href="<c:url value="/res/css/bootstrap.min.css"/>">
-<link type="text/css" rel="stylesheet" href="<c:url value="/res/css/bootstrap-theme.min.css"/>">
-<link type="text/css" rel="stylesheet" href="<c:url value="/res/css/style.css"/>">
+<link type="text/css" rel="stylesheet" href="<c:url value="/r/css/bootstrap.min.css"/>">
+<link type="text/css" rel="stylesheet" href="<c:url value="/r/css/bootstrap-theme.min.css"/>">
+<link type="text/css" rel="stylesheet" href="<c:url value="/r/css/style.css"/>">
 
-<script type="text/javascript" src="<c:url value="/res/js/jquery-1.9.1.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/res/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/r/js/jquery-1.9.1.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/r/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
 	<div class="panel panel-primary login-panel">
@@ -19,17 +19,17 @@
         <h3 class="panel-title">用户登录</h3>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" action="<c:url value="/j_spring_security_check"/>" method="post" role="form">
+        <form class="form-horizontal" action="<c:url value="/login"/>" method="post" role="form">
             <div class="form-group">
                 <label for="managerName" class="col-lg-3 control-label">用户名</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" name="j_username" id="loginName" placeholder="用户名" value="zhangsan">
+                    <input type="text" class="form-control" name="username" id="loginName" placeholder="用户名" value="zhangsan">
                 </div>
             </div>
             <div class="form-group" style="display: block">
                 <label for="managerPwd" class="col-lg-3 control-label">密码</label>
                 <div class="col-lg-9">
-                    <input type="password" class="form-control" name="j_password" id="loginPwd" placeholder="密码" value="000000">
+                    <input type="password" class="form-control" name="password" id="loginPwd" placeholder="密码" value="000000">
                 </div>
             </div>
 
