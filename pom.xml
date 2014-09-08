@@ -8,5 +8,7 @@
   <modules>
   	<module>spring-security-hello</module>
     <module>shiro-hello</module>
+    <module>shiro-web</module>
+    <module>shiro-spring</module>
   </modules>
 </project>
