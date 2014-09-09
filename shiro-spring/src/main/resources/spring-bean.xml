@@ -50,13 +50,13 @@
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.itsinic.gs.entity"/>
-        <property name="configurationProperties">
+        <property name="typeAliasesPackage" value="cn.v5cn.security.shiro_spring.entity"/>
+        <!-- <property name="configurationProperties">
             <props>
-                <!-- 添加MyBatis二级缓存 -->
+                添加MyBatis二级缓存
                 <prop key="cacheEnabled">true</prop>
             </props>
-        </property>
+        </property> -->
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -67,5 +67,5 @@
         <property name="annotationClass" value="org.springframework.stereotype.Repository" />
         <property name="basePackage" value="cn.v5cn.security.shiro_spring.dao" />
     </bean>
-    
+    <import resource="classpath:spring-shiro.xml"/>
 </beans>
