@@ -55,8 +55,11 @@ public class Resource implements Serializable {
         return type;
     }
 
-    public void setType(ResourceType type) {
-        this.type = type;
+    public void setType(String type) {
+    	if(ResourceType.button.equals(type))
+    		this.type = ResourceType.button;
+    	else
+    		this.type = ResourceType.menu;
     }
 
     public String getUrl() {
