@@ -7,6 +7,7 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,12 @@ public class V5Realm extends AuthorizingRealm {
 	
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		
-		return null;
+		 String username = (String)principals.getPrimaryPrincipal();
+		 //User user = userService.findByUserName(username);
+		 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		 info.setRoles(userService.findByRole(username));
+		 info.setStringPermissions(userService.findByPermission(username));
+		return info;
 	}
 
 	@Override

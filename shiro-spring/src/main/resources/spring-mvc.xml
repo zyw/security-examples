@@ -13,7 +13,9 @@
 	<context:component-scan base-package="cn.v5cn.security.shiro_spring.action">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-
+	
+	<mvc:resources location="/WEB-INF/resources/" mapping="/r/**"/>
+	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"
