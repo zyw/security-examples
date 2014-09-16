@@ -21,6 +21,9 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"
                   p:supportedMediaTypes="text/html"/>
         </mvc:message-converters>
+        <mvc:argument-resolvers>
+        	<bean class="cn.v5cn.security.shiro_spring.annotation.CurrentUserMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
