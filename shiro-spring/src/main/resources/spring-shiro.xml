@@ -38,6 +38,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/login=authc
+				/logout=logout
 				/r/**=anon
 				/**=user,v5User
 			</value>

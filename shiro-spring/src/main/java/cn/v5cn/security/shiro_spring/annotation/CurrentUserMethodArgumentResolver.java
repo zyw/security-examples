@@ -6,10 +6,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.alibaba.druid.mock.MockParameterMetaData.Parameter;
-
-public class CurrentUserMethodArgumentResolver implements
-		HandlerMethodArgumentResolver {
+public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
