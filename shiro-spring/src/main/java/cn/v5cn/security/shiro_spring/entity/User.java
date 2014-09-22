@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String username; //用户名
     private String password; //密码
     private String salt; //加密密码的盐
-    private String roleIds; //拥有的角色列表
+    private String role_Ids; //拥有的角色列表
     private Boolean locked = Boolean.FALSE;
 
     public User() {
@@ -71,13 +71,13 @@ public class User implements Serializable {
         return username + salt;
     }
 
-    public String getRoleIds() {
+    public String getRole_Ids() {
         
-        return roleIds;
+        return role_Ids;
     }
 
-    public void setRoleIds(String roleIds) {
-        this.roleIds = roleIds;
+    public void setRole_Ids(String role_Ids) {
+        this.role_Ids = role_Ids;
     }
     
     public Boolean getLocked() {
@@ -113,7 +113,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
-                ", roleIds=" + roleIds +
+                ", role_Ids=" + role_Ids +
                 ", locked=" + locked +
                 '}';
     }

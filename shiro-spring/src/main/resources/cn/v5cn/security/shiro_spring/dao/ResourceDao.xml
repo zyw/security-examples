@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.v5cn.security.shiro_spring.dao.ResourceDao">
     <select id="findByIds" resultType="Resource">
-        SELECT * FROM sys_resource WHERE id IN (#{resIds})
+        SELECT * FROM sys_resource WHERE id IN 
+		<foreach item="item" index="index" collection="array"
+      			open="(" separator="," close=")">
+        	#{item}
+  		</foreach>
     </select>
     <!-- <insert id="add">
     	insert into account(userID,loginName,password) values(#{userId},#{loginName},#{password})

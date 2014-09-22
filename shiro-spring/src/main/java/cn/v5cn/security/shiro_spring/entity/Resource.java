@@ -13,27 +13,12 @@ public class Resource implements Serializable {
 	
 	private Long id; //编号
     private String name; //资源名称
-    private ResourceType type = ResourceType.menu; //资源类型
-    private String url; //资源路径
+    private String type; //资源类型
+    private String resPath; //资源路径
     private String permission; //权限字符串
-    private Long parentId; //父编号
-    private String parentIds; //父编号列表
+    private Long parent_Id; //父编号
+    private String parent_Ids; //父编号列表
     private Boolean available = Boolean.FALSE;
-
-    public static enum ResourceType {
-        menu("菜单"), button("按钮");
-
-        private final String info;
-        private ResourceType(String info) {
-            this.info = info;
-        }
-
-        public String getInfo() {
-            return info;
-        }
-    }
-
-
 
     public Long getId() {
         return id;
@@ -51,23 +36,20 @@ public class Resource implements Serializable {
         this.name = name;
     }
 
-    public ResourceType getType() {
+    public String getType() {
         return type;
     }
 
     public void setType(String type) {
-    	if(ResourceType.button.equals(type))
-    		this.type = ResourceType.button;
-    	else
-    		this.type = ResourceType.menu;
+    	this.type = type;
     }
 
-    public String getUrl() {
-        return url;
+    public String getResPath() {
+        return resPath;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setResPath(String resPath) {
+        this.resPath = resPath;
     }
 
     public String getPermission() {
@@ -78,20 +60,20 @@ public class Resource implements Serializable {
         this.permission = permission;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Long getParent_Id() {
+        return parent_Id;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setParent_Id(Long parent_Id) {
+        this.parent_Id = parent_Id;
     }
 
-    public String getParentIds() {
-        return parentIds;
+    public String getParent_Ids() {
+        return parent_Ids;
     }
 
-    public void setParentIds(String parentIds) {
-        this.parentIds = parentIds;
+    public void setParent_Ids(String parent_Ids) {
+        this.parent_Ids = parent_Ids;
     }
 
     public Boolean getAvailable() {
@@ -103,11 +85,11 @@ public class Resource implements Serializable {
     }
 
     public boolean isRootNode() {
-        return parentId == 0;
+        return parent_Id == 0;
     }
 
     public String makeSelfAsParentIds() {
-        return getParentIds() + getId() + "/";
+        return getParent_Ids() + getId() + "/";
     }
     @Override
     public boolean equals(Object o) {
@@ -126,16 +108,11 @@ public class Resource implements Serializable {
         return id != null ? id.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "Resource{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type=" + type +
-                ", permission='" + permission + '\'' +
-                ", parentId=" + parentId +
-                ", parentIds='" + parentIds + '\'' +
-                ", available=" + available +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Resource [id=" + id + ", name=" + name + ", type=" + type
+				+ ", resPath=" + resPath + ", permission=" + permission
+				+ ", parent_Id=" + parent_Id + ", parent_Ids=" + parent_Ids
+				+ ", available=" + available + "]";
+	}
 }

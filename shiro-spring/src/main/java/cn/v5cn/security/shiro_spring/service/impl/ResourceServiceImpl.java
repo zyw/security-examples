@@ -18,7 +18,7 @@ public class ResourceServiceImpl implements ResourceService {
 	
 	@Override
 	public List<Resource> findByIds(Long... resIds) {
-		return resourceDao.findByIds(StringUtils.join(resIds,","));
+		return resourceDao.findByIds(resIds);
 	}
 
 	@Override
@@ -28,7 +28,8 @@ public class ResourceServiceImpl implements ResourceService {
 		for(int i=0;i<temp.length;i++){
 			ids[i] = Long.valueOf(temp[i]);
 		}
-		return findByIds(ids);
+		System.out.println("---------------:::"+resourceDao.findByIds(ids));
+		return resourceDao.findByIds(ids);
 	}
 	
 	

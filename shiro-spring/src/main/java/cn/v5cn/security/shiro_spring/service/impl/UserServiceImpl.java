@@ -36,13 +36,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Set<String> findByPermission(String username) {
-		User user = findByUserName(username);
-		List<Role> roles = roleService.findByStrIds(user.getRoleIds());
-		List<String> pids = new ArrayList<String>();
-		for(Role role : roles){
-			pids.add(role.getResourceIds());
-		}
-		List<Resource> resources = resourceService.findByStrIds(StringUtils.join(pids,","));
+		List<Resource> resources = resourceByUsername(username);
 		Set<String> result = new HashSet<String>();
 		for(Resource res : resources){
 			result.add(res.getPermission());
@@ -53,7 +47,28 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Set<String> findByRole(String username) {
 		User user = findByUserName(username);
-		return roleService.findRolesByIds(user.getRoleIds());
+		return roleService.findRolesByIds(user.getRole_Ids());
 	}
 
+	@Override
+	public List<Resource> findResourceByUserName(String username) {
+		List<Resource> resources = resourceByUsername(username);
+		List<Resource> result = new ArrayList<Resource>();
+		for(Resource res: resources){
+			if(!"menu".equals(res.getType())){
+				continue;
+			}
+			result.add(res);
+		}
+		return result;
+	}
+	private List<Resource> resourceByUsername(String username){
+		User user = findByUserName(username);
+		List<Role> roles = roleService.findByStrIds(user.getRole_Ids());
+		List<String> pids = new ArrayList<String>();
+		for(Role role : roles){
+			pids.add(role.getResource_Ids());
+		}
+		return resourceService.findByStrIds(StringUtils.join(pids,","));
+	}
 }

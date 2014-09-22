@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,13 +8,13 @@
         <title>首页</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
-        <link href='<spring:url value="/r/css/bootstrap.min.css"/>' rel="stylesheet" type="text/css" />
+        <link href='<c:url value="/r/css/bootstrap.min.css"/>' rel="stylesheet" type="text/css" />
         <!-- font Awesome -->
-        <link href="<spring:url value="/r/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value="/r/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
-        <link href="<spring:url value="/r/css/ionicons.min.css"/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value="/r/css/ionicons.min.css"/>" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="<spring:url value="/r/css/AdminLTE.css"/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value="/r/css/AdminLTE.css"/>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +55,7 @@
                                         <li><!-- start message -->
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<spring:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image"/>
+                                                    <img src="<c:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
                                                     Support Team
@@ -67,7 +67,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<spring:url value="/r/image/avatar2.png"/>" class="img-circle" alt="user image"/>
+                                                    <img src="<c:url value="/r/image/avatar2.png"/>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     AdminLTE Design Team
@@ -79,7 +79,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<spring:url value="/r/image/avatar.png"/>" class="img-circle" alt="user image"/>
+                                                    <img src="<c:url value="/r/image/avatar.png"/>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -91,7 +91,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<spring:url value="/r/image/avatar2.png"/>" class="img-circle" alt="user image"/>
+                                                    <img src="<c:url value="/r/image/avatar2.png"/>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -103,7 +103,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="<spring:url value="/r/image/avatar.png"/>" class="img-circle" alt="user image"/>
+                                                    <img src="<c:url value="/r/image/avatar.png"/>" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -238,7 +238,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="<spring:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image" />
+                                    <img src="<c:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image" />
                                     <p>
                                         Jane Doe - Web Developer
                                         <small>Member since Nov. 2012</small>
@@ -262,7 +262,7 @@
                                         <a href="#" class="btn btn-default btn-flat">设置</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="<spring:url value="/logout"/>" class="btn btn-default btn-flat">退出</a>
+                                        <a href="<c:url value="/logout"/>" class="btn btn-default btn-flat">退出</a>
                                     </div>
                                 </li>
                             </ul>
@@ -279,7 +279,7 @@
                     <!-- Sidebar user panel 
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<spring:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image" />
+                            <img src="<c:url value="/r/image/avatar3.png"/>" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Hello, Jane</p>
@@ -316,10 +316,12 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu" style="display: block;">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> 组织机构</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> 用户管理</a></li>
+                            	<c:forEach var="m" items="${ms}">
+                                	<li><a href="<c:url value="${m.resPath }"/>"><i class="fa fa-angle-double-right"></i> ${m.name }</a></li>
+                                </c:forEach>
+                                <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> 用户管理</a></li>
                                 <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> 角色管理</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> 资源管理</a></li>
+                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> 资源管理</a></li> -->
                             </ul>
                         </li>
                         <li>
@@ -418,11 +420,11 @@
 
 
         <!-- jQuery 2.0.2 -->
-        <script src='<spring:url value="/r/js/jquery-2.0.3.min.js"/>'></script>
+        <script src='<c:url value="/r/js/jquery-2.0.3.min.js"/>'></script>
         <!-- Bootstrap -->
-        <script src="<spring:url value="/r/js/bootstrap.min.js"/>" type="text/javascript"></script>
+        <script src="<c:url value="/r/js/bootstrap.min.js"/>" type="text/javascript"></script>
         <!-- AdminLTE App -->
-        <script src="<spring:url value="/r/js/app.js"/>" type="text/javascript"></script>
+        <script src="<c:url value="/r/js/app.js"/>" type="text/javascript"></script>
 
     </body>
 </html>
