@@ -1052,3 +1052,15 @@ $(window).load(function() {
         })
     }
 })(window.jQuery || window.Zepto);
+
+(function(){
+	"use strict";
+	var V5Util = {
+		pageRedirct:function(id,url){
+			$.get(url,null,function(data){
+				$("#"+id).empty().append(data);
+			});
+		}
+	};
+	window.V5Util = V5Util;
+})();

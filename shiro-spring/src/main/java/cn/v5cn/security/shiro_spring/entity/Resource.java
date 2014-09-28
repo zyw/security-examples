@@ -14,7 +14,7 @@ public class Resource implements Serializable {
 	private Long id; //编号
     private String name; //资源名称
     private String type; //资源类型
-    private String resPath; //资源路径
+    private String url; //资源路径
     private String permission; //权限字符串
     private Long parent_Id; //父编号
     private String parent_Ids; //父编号列表
@@ -44,12 +44,12 @@ public class Resource implements Serializable {
     	this.type = type;
     }
 
-    public String getResPath() {
-        return resPath;
+    public String getUrl() {
+        return url;
     }
 
-    public void setResPath(String resPath) {
-        this.resPath = resPath;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getPermission() {
@@ -111,7 +111,7 @@ public class Resource implements Serializable {
 	@Override
 	public String toString() {
 		return "Resource [id=" + id + ", name=" + name + ", type=" + type
-				+ ", resPath=" + resPath + ", permission=" + permission
+				+ ", url=" + url + ", permission=" + permission
 				+ ", parent_Id=" + parent_Id + ", parent_Ids=" + parent_Ids
 				+ ", available=" + available + "]";
 	}

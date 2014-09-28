@@ -15,6 +15,9 @@
         <link href="<c:url value="/r/css/ionicons.min.css"/>" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="<c:url value="/r/css/AdminLTE.css"/>" rel="stylesheet" type="text/css" />
+        <!-- treetable -->
+        <link href="<c:url value="/r/css/jquery.treetable.css"/>" rel="stylesheet" type="text/css" />
+        <link href="<c:url value="/r/css/jquery.treetable.theme.default.css"/>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -317,7 +320,7 @@
                             </a>
                             <ul class="treeview-menu" style="display: block;">
                             	<c:forEach var="m" items="${ms}">
-                                	<li><a href="<c:url value="${m.resPath }"/>"><i class="fa fa-angle-double-right"></i> ${m.name }</a></li>
+                                	<li><a href="javascript:V5Util.pageRedirct('content','<c:url value="${m.url }"/>');"><i class="fa fa-angle-double-right"></i> ${m.name }</a></li>
                                 </c:forEach>
                                 <!-- <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> 用户管理</a></li>
                                 <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> 角色管理</a></li>
@@ -411,7 +414,7 @@
                 </section>
 
                 <!-- Main content -->
-                <section class="content">
+                <section class="content" id="content">
 
 
                 </section><!-- /.content -->
@@ -423,6 +426,8 @@
         <script src='<c:url value="/r/js/jquery-2.0.3.min.js"/>'></script>
         <!-- Bootstrap -->
         <script src="<c:url value="/r/js/bootstrap.min.js"/>" type="text/javascript"></script>
+        <!-- treetable js -->
+        <script src="<c:url value="/r/js/jquery.treetable.js"/>" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="<c:url value="/r/js/app.js"/>" type="text/javascript"></script>
 

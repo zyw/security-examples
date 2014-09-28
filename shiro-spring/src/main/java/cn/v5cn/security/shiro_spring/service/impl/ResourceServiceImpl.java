@@ -31,6 +31,11 @@ public class ResourceServiceImpl implements ResourceService {
 		System.out.println("---------------:::"+resourceDao.findByIds(ids));
 		return resourceDao.findByIds(ids);
 	}
+
+	@Override
+	public List<Resource> findAll() {
+		return resourceDao.findAll();
+	}
 	
 	
 

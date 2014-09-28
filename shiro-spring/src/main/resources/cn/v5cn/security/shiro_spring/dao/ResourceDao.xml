@@ -8,6 +8,9 @@
         	#{item}
   		</foreach>
     </select>
+    <select id="findAll" resultType="Resource">
+    	select * from sys_resource
+    </select>
     <!-- <insert id="add">
     	insert into account(userID,loginName,password) values(#{userId},#{loginName},#{password})
     </insert> -->

@@ -9,4 +9,5 @@ import cn.v5cn.security.shiro_spring.entity.Resource;
 @Repository
 public interface ResourceDao {
 	List<Resource> findByIds(Long[] array);
+	List<Resource> findAll();
 }
