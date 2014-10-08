@@ -424,6 +424,8 @@
 
         <!-- jQuery 2.0.2 -->
         <script src='<c:url value="/r/js/jquery-2.0.3.min.js"/>'></script>
+        <!-- jQuery.form 3.51 -->
+        <script src='<c:url value="/r/js/jquery.form.js"/>'></script>
         <!-- Bootstrap -->
         <script src="<c:url value="/r/js/bootstrap.min.js"/>" type="text/javascript"></script>
         <!-- treetable js -->

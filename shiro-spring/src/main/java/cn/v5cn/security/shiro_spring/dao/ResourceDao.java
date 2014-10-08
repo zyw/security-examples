@@ -10,4 +10,6 @@ import cn.v5cn.security.shiro_spring.entity.Resource;
 public interface ResourceDao {
 	List<Resource> findByIds(Long[] array);
 	List<Resource> findAll();
+	Resource findByResId(Long resId);
+	int addRes(Resource resource);
 }

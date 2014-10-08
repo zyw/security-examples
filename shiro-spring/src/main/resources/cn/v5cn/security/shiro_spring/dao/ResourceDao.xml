@@ -11,7 +11,11 @@
     <select id="findAll" resultType="Resource">
     	select * from sys_resource
     </select>
-    <!-- <insert id="add">
-    	insert into account(userID,loginName,password) values(#{userId},#{loginName},#{password})
-    </insert> -->
+    <select id="findByResId" resultType="Resource">
+    	select * from sys_resource where id=#{resId}
+    </select>
+    <insert id="addRes">
+    	insert into sys_resource(name, type, url, permission, parent_id, parent_ids, available)
+    	 values(#{name},#{type},#{url},#{permission},#{parent_id},#{parent_ids},1)
+    </insert>
 </mapper>

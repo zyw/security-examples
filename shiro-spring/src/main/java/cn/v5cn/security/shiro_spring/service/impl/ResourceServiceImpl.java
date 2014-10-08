@@ -36,7 +36,14 @@ public class ResourceServiceImpl implements ResourceService {
 	public List<Resource> findAll() {
 		return resourceDao.findAll();
 	}
-	
-	
 
+	@Override
+	public Resource findByResId(Long resId) {
+		return resourceDao.findByResId(resId);
+	}
+
+	@Override
+	public int addRes(Resource resource) {
+		return resourceDao.addRes(resource);
+	}
 }
