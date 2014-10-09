@@ -66,10 +66,20 @@
 
 <script type="text/javascript">
 	$(function(){
+		
 		$("#res_form").ajaxForm({
 			dataType:'json',
+			type:"POST",
 			success:function(data){
-				console.log(data);
+				if(data.state){
+					toastr.success(data.message);
+					V5Util.pageRedirct('content','<c:url value="/resource"/>');
+					return;
+				}
+				toastr.error(data.message);
+			},
+			error:function(xhr, status, error){
+				toastr.error(error);
 			}
 		});
 	})

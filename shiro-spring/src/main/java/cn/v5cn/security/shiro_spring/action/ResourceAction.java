@@ -47,8 +47,8 @@ public class ResourceAction {
 		System.out.println(resource);
 		int result = resourceService.addRes(resource);
 		if(result > 0){
-			return ImmutableMap.of("state","1","success", "添加资源成功！");
+			return ImmutableMap.of("state","1","message", "添加资源成功！");
 		}
-		return ImmutableMap.of("state","0","success", "添加资源失败！");
+		return ImmutableMap.of("state","0","message", "添加资源失败！");
 	}
 }

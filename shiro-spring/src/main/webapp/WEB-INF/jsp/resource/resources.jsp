@@ -54,5 +54,5 @@
             </div>
 
 <script type="text/javascript">
-	$("#resource-treetable").treetable({ expandable: true });
+	$("#resource-treetable").treetable({ expandable: true }).treetable("expandNode", 1);
 </script>
